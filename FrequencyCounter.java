@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.Random;
+import java.lang.Math;
 import javax.swing.*;
 import java.io.*;
 import java.text.NumberFormat;
@@ -9,7 +11,7 @@ import java.text.NumberFormat;
  * 
  *  Assignment:     A1.5
  * 
- *  Description:    Place a short description of your program here
+ *  Description:    1000 random numbers will be generated between 1-50 and will be outputed to a text file.
  * 
  *************************************************************/
 
@@ -18,8 +20,13 @@ public class FrequencyCounter {
     public static void main(String[] args) throws IOException{
     // ***** constants *******
     
+    final int Max = 1000;               //amount of times for loop will run
+    
     // ***** variables *****
     
+      Random  RandomGenerator = new Random();     //This is the random number generator
+      int RandomNumber = 0;                      // This is where random numbers will be stored
+
         String banner = "";             // output banner
         String prompt = "";             // prompt for user input
         
@@ -40,14 +47,16 @@ public class FrequencyCounter {
         // file io buffers for reading and writing to text files
         
         //BufferedReader fin = new BufferedReader(new FileReader("filename.txt"));
-        //PrintWriter fout = new PrintWriter(new BufferedWriter(new FileWriter("outfle.txt")));
+        
+        //Placing random numbers into this text file created
+        PrintWriter fout = new PrintWriter(new BufferedWriter(new FileWriter("RandomNumbersFile.txt")));
     
     // ***** print banners *****
     
         banner = "*****************************" + nl;
-        banner += "Name:        Sveinson" + nl;
+        banner += "Name:        Sirna Tafese" + nl;
         banner += "Class:       CS30S" + nl;
-        banner += "Assignment:  Ax Qy" + nl;
+        banner += "Assignment:  A1.5" + nl;
         banner += "*****************************" + nl + nl;
         
         System.out.println(banner);
@@ -61,6 +70,18 @@ public class FrequencyCounter {
     
     // ***** Main Processing *****
     
+    //For loop that will run 1000 times to generate 1000 different numbers
+    for(int i = 0; i < Max; i++) {
+        //Making random numbers between 1 and 50
+        RandomNumber = (int)(Math.random()*((50-1)+1))+1;
+        
+        //Printing random numbers to the terminal window
+        System.out.println(RandomNumber);
+        
+        //Printing numbres to a text file
+        fout.println(RandomNumber);
+    }//end of for loop
+    
     // ***** Print Formatted Output *****
     
     // ***** Closing Message *****
@@ -72,7 +93,7 @@ public class FrequencyCounter {
     // **** close io buffers *****
     
         //fin.close();
-        //fout.close();
+        fout.close();
     } // end main 
     
 } // end FormatTemplate
